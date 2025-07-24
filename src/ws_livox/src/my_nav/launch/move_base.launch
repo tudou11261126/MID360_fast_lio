@@ -1,0 +1,22 @@
+<launch>
+  <!-- 全局定位：可用 AMCL 或 FAST-LIO-Localization -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base1" output="screen" clear_params="true" args="/map:=prior_map /odom:=Odometry">
+        <rosparam file="$(find my_nav)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find my_nav)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find my_nav)/param/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find my_nav)/param/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find my_nav)/param/teb_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find my_nav)/param/global_planner_params.yaml" command="load" />
+
+
+    <!-- 指定规划器 -->
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    <param name="base_local_planner"  value="teb_local_planner/TebLocalPlannerROS"/>
+    <param name="controller_frequency" value="15.0"/>
+  </node>
+
+  <!-- <node name="trans_tf_2d" pkg="my_nav" type="trans_tf_2d" output="screen"/> -->
+
+
+    <node pkg="my_nav" type="trans_tf_2d" name="trans_tF_2d" />
+</launch>

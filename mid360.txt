@@ -1,0 +1,27 @@
+/****************创建3d地图****************/
+roslaunch livox_ros_driver2 msg_MID360.launch		#启动雷达
+roslaunch fast_lio mapping_mid360.launch		#建3d图
+/*****************************************/
+
+/****************利用3d地图，rocolazetion重定位****************/
+roslaunch livox_ros_driver2 msg_MID360.launch
+roslaunch fast_lio_localization localization_MID360.launch 
+rosrun fast_lio_localization publish_initial_pose.py 0 0 0 0 0 0		#发布初始位姿
+/*****************************************************/
+
+/****************创建2d地图****************/
+roslaunch livox_ros_driver2 msg_MID360.launch
+roslaunch fast_lio_localization build_map.launch
+rosrun map_server map_saver map:=/projected_map -f ~/Desktop/livox_ws/src/ws_livox/src/FAST_LIO/PCD/scans		#保存2d地图
+（记得去FAST_LIO/PCD/scans将scans.yaml文件里的nan改成0）
+/*****************************************************/
+
+/****************利用2d地图，进行rocolazetion重定位****************/
+roslaunch livox_ros_driver2 msg_MID360.launch
+roslaunch fast_lio_localization localizetion.launch
+rosrun fast_lio_localization publish_initial_pose.py 0 0 0 0 0 0		#发布初始位姿
+sudo chmod 777 /dev/ttyS0
+rosrun my_nav serial_send_pose.py
+/*****************************************************/
+
+roslaunch my_nav move_base.launch   	#导航

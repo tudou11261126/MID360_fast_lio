@@ -1,0 +1,17 @@
+# 编译生成的文件/目录
+build/
+devel/
+install/
+log/
+
+# 二进制大文件
+*.o
+*.so
+*.a
+*.exe
+*.dylib
+*.dll
+
+# ROS bag、pcd 等
+*.bag
+*.pcd

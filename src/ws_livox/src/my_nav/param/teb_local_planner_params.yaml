@@ -1,0 +1,55 @@
+# =============================================================================
+# TEB 局部规划器完整参数（teb_local_planner_params.yaml）
+# 适用于差速/全向四足底盘，Mid-360 激光雷达
+# =============================================================================
+TebLocalPlannerROS:
+  odom_topic: Odometry
+  holonomic_robot: false
+  # ==========================
+  # 1. 公共参数
+  # ==========================
+  max_vel_x: 1.0              # 最大线速度 x (m/s)
+  min_vel_x: -1.0             # 最小线速度 x (m/s，负号允许倒车)
+  max_vel_y: 1.0              # 最大线速度 y (m/s，全向轮/麦克纳姆轮有效)
+  min_vel_y: -1.0             # 最小线速度 y (m/s)
+  max_vel_theta: 1.0          # 最大角速度 (rad/s)
+  min_vel_theta: -1.0         # 最小角速度 (rad/s)
+  acc_lim_x: 10.0             # x 方向最大加速度 (m/s²)
+  acc_lim_y: 10.0             # y 方向最大加速度 (m/s²)
+  acc_lim_theta: 1.0          # 角加速度限制 (rad/s²)
+  xy_goal_tolerance: 0.2      # 目标 XY 容差 (m)
+  yaw_goal_tolerance: 0.05    # 目标角度容差 (rad)
+  sim_time: 2.0               # 前向仿真时间窗口 (s)
+  vx_samples: 15              # x 线速度采样点数量
+  vy_samples: 15              # y 线速度采样点数量
+  vth_samples: 15             # 角速度采样点数量
+  sim_granularity: 0.07       # 轨迹离散化粒度 (m)
+  oscillation_reset_dist: 0.1 # 判定为“脱离震荡”的最小位移 (m)
+
+  # ==========================
+  # 2. TEB 独有参数（默认值，按需微调）
+  # ==========================
+  dt_ref: 0.3                 # 轨迹离散化时间步长 (s)
+  dt_hysteresis: 0.1          # 步长容差 (s)
+  min_turning_radius: 0.0     # 最小转弯半径 (m；差分/全向轮设 0)
+  max_global_plan_lookahead_dist: 3.0  # 局部规划向前看多远 (m)
+  feasibility_check_no_poses: 5        # 轨迹可行性检查的位姿步数
+  min_obstacle_dist: 0.25     # 与障碍最小距离 (m)
+  inflation_dist: 0.6         # 额外膨胀距离 (m)
+  include_costmap_obstacles: true      # 是否使用 costmap 障碍
+  costmap_obstacles_behind_robot_dist: 1.0  # 身后多少米内仍考虑障碍 (m)
+
+  # 优化权重（一般保持默认即可）
+  weight_max_vel_x: 2.0
+  weight_max_vel_theta: 1.0
+  weight_acc_lim_x: 1.0
+  weight_acc_lim_theta: 1.0
+  weight_kinematics_nh: 1000.0    # 非完整性约束权重（差分驱动高值）
+  weight_kinematics_forward_drive: 1.0
+  weight_obstacle: 50.0
+  weight_optimaltime: 1.0
+
+  # 可视化 / 调试
+  publish_traj_pc: true         # 发布轨迹点云
+  publish_cost_grid_pc: true    # 发布代价网格点云
+  global_frame_id: camera_init  # 全局坐标系

@@ -1,0 +1,12 @@
+# =============================================================================
+# 全局代价图（global_costmap_params.yaml）
+# 用于全局路径规划，依赖静态地图
+# =============================================================================
+global_costmap:
+  global_frame: map            # 全局坐标系，通常是固定地图帧
+  robot_base_frame: body_foot  # 机器人底盘坐标系
+  update_frequency: 0.2        # 代价图更新频率（Hz），全局地图通常较慢
+  publish_frequency: 1       # 代价图发布频率（Hz），供可视化
+  transform_tolerance: 2 #等待坐标变换发布信息的超时时间
+
+  static_map: true             # 使用静态地图（已建图不再变化）

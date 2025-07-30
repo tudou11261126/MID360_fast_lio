@@ -27,6 +27,15 @@ class LocalizationToSerial:
         p = int(round(math.degrees(pitch) * 100))
         yw = int(round(math.degrees(yaw)  * 100))
 
+        #数据安全约束
+        x = min(max(x, -32768), 32767)
+        y = min(max(y, -32768), 32767)
+        z = min(max(z, -32768), 32767)
+        r = min(max(r, -32768), 32767)
+        p = min(max(p, -32768), 32767)
+        yw = min(max(yw, -32768), 32767)
+
+
         data = (
             struct.pack('<B', 0xff) +
             struct.pack('<B', 0xfe) +
@@ -54,4 +63,3 @@ if __name__ == '__main__':
         node.spin()
     except rospy.ROSInterruptException:
         pass
-

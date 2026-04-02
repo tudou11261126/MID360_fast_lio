@@ -123,7 +123,7 @@ make
 sudo make install
 ```
 这里大概率会报错
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/bc102977c2a448adb7ae80f902754cef.png#pic_center![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/c0df8f3317904921b559136e8de4b14c.png#pic_center)
+
 打开so2.cpp
 修改为
 

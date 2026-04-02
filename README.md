@@ -123,6 +123,7 @@ make
 sudo make install
 ```
 这里大概率会报错
+<img width="576" height="378" alt="image" src="https://github.com/user-attachments/assets/a80b9890-e184-4a82-af40-fbb125df5802" />
 
 打开so2.cpp
 修改为

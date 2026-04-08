@@ -123,7 +123,8 @@ make
 sudo make install
 ```
 这里大概率会报错
-<img width="576" height="378" alt="image" src="https://github.com/user-attachments/assets/a80b9890-e184-4a82-af40-fbb125df5802" />
+<img width="581" height="374" alt="屏幕截图 2025-07-21 005256" src="https://github.com/user-attachments/assets/d74ff3dc-b6d7-4e17-a654-0e231cac4d29" />
+
 
 打开so2.cpp
 修改为
